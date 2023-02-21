@@ -313,9 +313,3 @@ GO
 
 exec del_all_and_add_testClientov
 
-select * from  Doctor
-select * from  Address
-select * from  Client
-select * from  Services
-select * from  Appointment_Services
-select * from  Timetable 
