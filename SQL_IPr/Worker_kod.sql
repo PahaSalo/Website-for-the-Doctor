@@ -12,8 +12,7 @@ CREATE TABLE [Timetable] (
 	ClientId int,
 	DocotorId int NOT NULL,
 	AddressId int NOT NULL,
-	Data datetime NOT NULL,
-	Time datetime NOT NULL,
+	DataTime datetime NOT NULL,
 )
 GO
 CREATE TABLE [Doctor] (
