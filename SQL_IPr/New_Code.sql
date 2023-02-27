@@ -1,41 +1,38 @@
+Create database DOCTOR
+use doctor
 
-USE DOCTOR
 CREATE TABLE [Client] (
 	Id int Primary key identity,
-	Name nvarchar(30) NOT NULL,
-	Telephone nvarchar(20) NOT NULL,
-	Mail nvarchar(30) NOT NULL,  
+	Client_Name nvarchar(30) NOT NULL,
+	Telephone nvarchar(30) NOT NULL,
+	Client_city nvarchar(30) NOT NULL,
 )
 GO
 CREATE TABLE [Timetable] (
 	Id int Primary key identity,
 	ClientId int,
-	DocotorId int NOT NULL,
+	DoctorId int NOT NULL,
 	AddressId int NOT NULL,
-	DataTime datetime NOT NULL,
+	ServicesId int NOT NULL,
+	Data datetime NOT NULL,
+	Time datetime NOT NULL,
 )
 GO
 CREATE TABLE [Doctor] (
 	Id int Primary key identity,
-	Name nvarchar(30) NOT NULL,
-	Telephone nvarchar(20) NOT NULL,
-	Mail nvarchar(20) NOT NULL,
-
+	Doctor_Name nvarchar(30) NOT NULL,
+	Telephone nvarchar(30) NOT NULL,
 )
 GO
 CREATE TABLE [Services] (
 	Id int Primary key identity,
-	Name nvarchar (30),
+	Services_Name nvarchar(30) NOT NULL,
 )
 GO
 CREATE TABLE [Address] (
 	Id int Primary key identity,
-	Name nvarchar (30),
-)
-GO
-CREATE TABLE [Appointment_Services] (
-	AppointmentId int NOT NULL,
-	ServiceId int NOT NULL
+	Address_Name nvarchar(30) NOT NULL,
+	Address_city nvarchar(30) NOT NULL,
 )
 GO
 
@@ -54,20 +51,11 @@ ON UPDATE CASCADE
 GO
 ALTER TABLE [Timetable] CHECK CONSTRAINT [Timetable_fk2]
 GO
-
-
-
-
-ALTER TABLE [Appointment_Services] WITH CHECK ADD CONSTRAINT [Appointment_Services_fk0] FOREIGN KEY ([AppointmentId]) REFERENCES [Timetable]([Id])
+ALTER TABLE [Timetable] WITH CHECK ADD CONSTRAINT [Timetable_fk3] FOREIGN KEY ([ServicesId]) REFERENCES [Services]([Id])
 ON UPDATE CASCADE
 GO
-ALTER TABLE [Appointment_Services] CHECK CONSTRAINT [Appointment_Services_fk0]
-GO
-ALTER TABLE [Appointment_Services] WITH CHECK ADD CONSTRAINT [Appointment_Services_fk1] FOREIGN KEY ([ServiceId]) REFERENCES [Services]([Id])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [Appointment_Services] CHECK CONSTRAINT [Appointment_Services_fk1]
+ALTER TABLE [Timetable] CHECK CONSTRAINT [Timetable_fk3]
 GO
 
-INSERT CLIENT VALUES ('Вася', '3897978378932789', 'ajgasjdj@mail.ru')
-select * from client 
+
+
